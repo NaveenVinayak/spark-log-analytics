@@ -8,5 +8,5 @@ trait ProjectConfig {
   val data=config.getConfig("data")
 
   val logDataFile=data.getString("logDataFile.file")
-
+//Trying to commit
 }
