@@ -6,7 +6,7 @@ trait ProjectConfig {
   private val config=ConfigFactory.load()
 
   val data=config.getConfig("data")
-
+// Aythala
   val logDataFile=data.getString("logDataFile.file")
 //Trying to commit
 // Adding to check if it comes
