@@ -188,6 +188,7 @@ object LogUtils extends ProjectConfig {
       val d = endpoint.split("/")
       d(1) == "fitness"
     }).map(x => x._1)
+    
   }
 
 
