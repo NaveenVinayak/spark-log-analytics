@@ -45,7 +45,7 @@ object LogUtils extends ProjectConfig {
   */
 
   def sportsUserVisits(accessLogs: RDD[AccessLog],n:Int) = {
-    val sportdept = accessLogs.map(x => (x.clientIdentd, x.endpoint)).//filter(x => x._2.split("/")(1)=="sport")
+    val sportdept = accessLogs.map(x => (x.clientIdentd, x.endpoint)).
       filter(x => {
       val endpoint = x._2
       val d = endpoint.split("/")
@@ -127,11 +127,11 @@ object LogUtils extends ProjectConfig {
 
   /*
   This function takes accessLogs as input and
-  returns total bytes transferred from the website
+  returns total bytes transferred from the website each day
   */
   def bytestransfreed(accessLogs: RDD[AccessLog]) = {
-    val requestIniated =accessLogs.map(x => x.contentSize).
-      reduce(_+_)
+    val requestIniated =accessLogs.map(x => (x.dateTime,x.contentSize)).
+      reduceByKey(_+_)
   }
 
   /*
