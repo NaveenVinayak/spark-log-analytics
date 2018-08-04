@@ -20,7 +20,7 @@ object logAnalytics extends ProjectConfig{
     */
     val accessLogs : RDD[AccessLog] = FileUtils.readAsText(logDataFile,sparkContext).map(AccessLog.parseLogLine)
 
-    /*
+   /*
        getting how many times each url was called
    */
     val uRLsCount : RDD[(String,Int)] = LogUtils.eachURLCalls(accessLogs)
