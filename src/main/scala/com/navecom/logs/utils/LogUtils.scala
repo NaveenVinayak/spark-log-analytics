@@ -3,14 +3,14 @@ package com.navecom.logs.utils
 import com.navecom.logs.config.ProjectConfig
 import org.apache.spark.rdd.RDD
 
-object LogUtils extends ProjectConfig {
+object LogUtils  {
 
   /*
   This function takes accessLogs as input and
   returns how many times each url was called
  */
-  def eachURLCalls(accessLogs: RDD[AccessLog])={
-    val eachURLCalls =accessLogs.map( x =>x.endpoint).
+  def eachURLCalls(accessLogs: RDD[AccessLog]):RDD[(String,Int)]={
+    val eachURLCalls :RDD[(String,Int)]=accessLogs.map( x =>x.endpoint).
       map(x => (x,1)).
       reduceByKey(_+_)
   }
@@ -20,8 +20,8 @@ object LogUtils extends ProjectConfig {
   returns unique departments
   */
 
-  def departments(accessLogs: RDD[AccessLog]) ={
-    val departments = accessLogs.map(x=>x.endpoint).map(endpt => {
+  def departments(accessLogs: RDD[AccessLog]) :RDD[String]={
+    val departments : RDD[String] = accessLogs.map(x=>x.endpoint).map(endpt => {
       val x = endpt.split("/")
       x(1)
     }).distinct()

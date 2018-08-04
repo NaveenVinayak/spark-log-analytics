@@ -106,8 +106,12 @@ object SparkContextFactory extends com.navecom.logs.config.ProjectConfig {
   private val factory: SparkContextFactory = new SparkContextFactory
 
   def getSparkSession(enviornment: String): SparkSession = {
-
     /* Get spark session*/
     factory.getSparkSession(enviornment)
+  }
+  /* Get spark context
+   */
+  def getSparkContext(environment: String):SparkContext ={
+    factory.getSparkContext(environment)
   }
 }
